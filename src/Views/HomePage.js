@@ -142,15 +142,18 @@ function HomePage() {
               <div className="tab">Hộp đèn</div>
             </div>
             <div className="projects-grid">
-              {/* Project items would go here */}
-              {[1, 2, 3, 4, 5, 6].map((item) => (
-                <div key={item} className="project-item">
+              {/* Project items from Firebase */}
+              {products.slice(0, 6).map((product) => (
+                <div key={product.id} className="project-item">
                   <img 
-                    src={`/images/bang-hieu-${item === 1 ? 'alu' : item === 2 ? 'spa-dianva' : 'quang-cao-dep-trung-tam-anh-ngu'}.jpg`} 
-                    alt={`Project ${item}`} 
+                    src={product.image} 
+                    alt={product.title} 
                   />
                   <div className="project-overlay">
-                    <h3>Dự án {item}</h3>
+                    <h3>{product.title}</h3>
+                    {product.category && (
+                      <p>Loại: {product.category}</p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -180,16 +183,17 @@ function HomePage() {
           <h2 className="section-title">LÀM BẢNG HIỆU QUẢNG CÁO</h2>
           <div className="product-carousel">
             <div className="products-grid">
-              {[
-                { id: 1, title: 'Thi công nội thất quán cafe', image: '/images/bang-hieu-spa-dianva.jpg' },
-                { id: 2, title: 'Hộp đèn mica', image: '/images/bang-hieu-alu.jpg' },
-                { id: 3, title: 'Thi công bảng hiệu SPA', image: '/images/bang-hieu-quang-cao-dep-trung-tam-anh-ngu.jpg' },
-                { id: 4, title: 'Thi công bảng hiệu Anh Ngữ', image: '/images/bang-hieu-spa-dianva.jpg' }
-              ].map((product) => (
+              {products.map((product) => (
                 <div key={product.id} className="product-item">
                   <a href="#">
                     <img src={product.image} alt={product.title} />
                     <h3>{product.title}</h3>
+                    {product.price && (
+                      <p className="product-price">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}</p>
+                    )}
+                    {product.category && (
+                      <span className="product-category">{product.category}</span>
+                    )}
                   </a>
                 </div>
               ))}
@@ -203,18 +207,19 @@ function HomePage() {
         <div className="section-container">
           <h2 className="section-title">HỘP ĐÈN QUẢNG CÁO</h2>
           <div className="light-box-grid">
-            {[
-              { id: 1, title: 'Hộp đèn LED siêu mỏng', image: '/images/bang-hieu-alu.jpg' },
-              { id: 2, title: 'Mẫu hộp đèn quảng cáo đẹp', image: '/images/bang-hieu-quang-cao-dep-trung-tam-anh-ngu.jpg' },
-              { id: 3, title: 'Hộp đèn mica hút nổi', image: '/images/bang-hieu-spa-dianva.jpg' }
-            ].map((box) => (
-              <div key={box.id} className="light-box-item">
-                <a href="#">
-                  <img src={box.image} alt={box.title} />
-                  <h3>{box.title}</h3>
-                </a>
-              </div>
-            ))}
+            {products
+              .filter(product => product.category === 'hop-den')
+              .map((product) => (
+                <div key={product.id} className="light-box-item">
+                  <a href="#">
+                    <img src={product.image} alt={product.title} />
+                    <h3>{product.title}</h3>
+                    {product.price && (
+                      <p className="product-price">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}</p>
+                    )}
+                  </a>
+                </div>
+              ))}
           </div>
         </div>
       </section>
