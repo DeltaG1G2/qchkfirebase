@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase.js';
 import './HomePage.css';
 import { Search, Phone, Mail, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function HomePage() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch products from Firestore
+  const fetchProducts = async () => {
+    const querySnapshot = await getDocs(collection(db, 'products'));
+    const productsData = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    setProducts(productsData);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  if (loading) return <div className="loading">Đang tải...</div>;
+
   return (
     <div className="home-container">
       {/* Header */}

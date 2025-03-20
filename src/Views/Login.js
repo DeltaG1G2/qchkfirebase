@@ -22,7 +22,7 @@ const Login = () => {
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
         alert('Login successful!');
-        window.location.href = '/dich-vu';
+        window.location.href = '/quan-ly'; // Changed from '/dich-vu'
       } else {
         alert('Invalid credentials');
       }
