@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomePage.css';
 import { Search, Phone, Mail, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
@@ -206,7 +207,7 @@ function HomePage() {
                 <li>Có nhà xưởng trực tiếp sản xuất giá tốt giảm tới 30% chi phí.</li>
                 <li>Thiết kế miễn phí cho khách thi công.</li>
                 <li>Cam kết thực hiện Đúng theo 100% hợp đồng.</li>
-                <li>Hoàn tiền thiết kế không cần lý do.</li>
+                <li>Hoàn tiền thiệt kế không cần lý do.</li>
                 <li>Giám Đốc đi lên từ thợ chính.</li>
                 <li>Đội ngũ nhân viên trẻ năng động nhiệt huyết.</li>
               </ul>
@@ -289,6 +290,7 @@ function HomePage() {
       </div>
     </div>
   );
+  <p>Already have an account? <Link to="/login">Login here</Link></p>
 }
 
 export default HomePage;
