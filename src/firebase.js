@@ -1,6 +1,6 @@
 
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -17,3 +17,14 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 export { db, auth };
+
+export const testConnection = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'test'));
+    console.log('Firestore connected successfully!');
+    return true;
+  } catch (error) {
+    console.error('Firestore connection error:', error);
+    return false;
+  }
+};
