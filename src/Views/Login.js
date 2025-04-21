@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { getDocs, query, collection, where } from 'firebase/firestore';
-import { db } from '../firebase.js';  // Changed from './firebase.js' to '../firebase.js'
+import { db } from '../firebase.js';
 import './Login.css';
+import { Lock, User } from 'lucide-react'; // Added new icons
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -35,27 +36,38 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleLogin}>
-        <h2>Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-header">
+          <h2>Đăng nhập hệ thống</h2>
+          <p>Quản lý sản phẩm Quảng Cáo Hoà Khánh</p>
+        </div>
+        <form onSubmit={handleLogin}>
+          <div className="input-group">
+            <User className="input-icon" />
+            <input
+              type="text"
+              placeholder="Tên đăng nhập"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <Lock className="input-icon" />
+            <input
+              type="password"
+              placeholder="Mật khẩu"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

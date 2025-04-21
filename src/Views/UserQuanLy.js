@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase.js';
 import './UserQuanLy.css';
+import { Link } from 'react-router-dom';
+import { Menu, Search, Phone, Mail } from 'lucide-react';
 
 const UserQuanLy = () => {
   const [products, setProducts] = useState([]);
@@ -57,7 +59,6 @@ const UserQuanLy = () => {
                 Lưu thay đổi
               </button>
             </div>
-            
             <div className="form-group">
               <label>Tiêu đề:</label>
               <input
@@ -66,7 +67,15 @@ const UserQuanLy = () => {
                 onChange={(e) => handleChange(product.id, 'title', e.target.value)}
               />
             </div>
-
+            <div className="form-group">
+              <label>Mô tả:</label>
+              <textarea
+                className="form-input"
+                value={product.description || ''}
+                onChange={(e) => handleChange(product.id, 'description', e.target.value)}
+                rows={4}
+              />
+            </div>
             <div className="form-group">
               <label>URL hình ảnh:</label>
               <input
@@ -82,7 +91,6 @@ const UserQuanLy = () => {
                 />
               )}
             </div>
-
             <div className="form-group columns">
               <div className="column">
                 <label>Giá (VND):</label>
