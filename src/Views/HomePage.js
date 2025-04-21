@@ -124,6 +124,7 @@ function Footer() {
 function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('all'); // Add this state
 
   // Fetch products from Firestore
   const fetchProducts = async () => {
@@ -142,6 +143,19 @@ function HomePage() {
 
   if (loading) return <div className="loading">Đang tải...</div>;
 
+  // Add this new function to get the first image from multiple URLs
+  const getFirstImage = (imageUrls) => {
+    if (!imageUrls) return '';
+    return imageUrls.split(',')[0].trim();
+  };
+
+  // Add this new function to filter products by category
+  const filteredProducts = () => {
+    if (activeTab === 'all') return products.slice(0, 6);
+    return products.filter(product => product.category === activeTab).slice(0, 6);
+  };
+
+  // Update the Featured Projects section
   return (
     <div className="home-container">
       <Header />
@@ -173,7 +187,7 @@ function HomePage() {
           </div>
           <div className="banner-image-container">
             <img
-              src="/images/bang-hieu-quang-cao-dep-trung-tam-anh-ngu.jpg"
+              src="https://phucloiviet.vn/wp-content/uploads/2021/04/duc-lai-1-1024x767.jpg"
               alt="Advertising Examples"
               className="main-banner-image"
             />
@@ -193,16 +207,36 @@ function HomePage() {
           <h2 className="section-title">DỰ ÁN BẢNG HIỆU TIÊU BIỂU</h2>
           <div className="project-tabs">
             <div className="tabs-placeholder">
-              <div className="tab active">Tất cả</div>
-              <div className="tab">Bảng hiệu</div>
-              <div className="tab">Chữ nổi</div>
-              <div className="tab">Hộp đèn</div>
+              <div 
+                className={`tab ${activeTab === 'all' ? 'active' : ''}`}
+                onClick={() => setActiveTab('all')}
+              >
+                Tất cả
+              </div>
+              <div 
+                className={`tab ${activeTab === 'bang-hieu' ? 'active' : ''}`}
+                onClick={() => setActiveTab('bang-hieu')}
+              >
+                Bảng hiệu
+              </div>
+              <div 
+                className={`tab ${activeTab === 'chu-noi' ? 'active' : ''}`}
+                onClick={() => setActiveTab('chu-noi')}
+              >
+                Chữ nổi
+              </div>
+              <div 
+                className={`tab ${activeTab === 'hop-den' ? 'active' : ''}`}
+                onClick={() => setActiveTab('hop-den')}
+              >
+                Hộp đèn
+              </div>
             </div>
             <div className="projects-grid">
-              {products.slice(0, 6).map((product) => (
+              {filteredProducts().map((product) => (
                 <div key={product.id} className="project-item">
                   <Link to={`/du-an/${product.id}`}>
-                    <img src={product.image} alt={product.title} />
+                    <img src={getFirstImage(product.image)} alt={product.title} />
                     <div className="project-overlay">
                       <h3>{product.title}</h3>
                       {product.category && (
@@ -239,7 +273,7 @@ function HomePage() {
               {products.map((product) => (
                 <div key={product.id} className="product-item">
                   <Link to={`/du-an/${product.id}`}>
-                    <img src={product.image} alt={product.title} />
+                    <img src={getFirstImage(product.image)} alt={product.title} />
                     <h3>{product.title}</h3>
                     {product.price && (
                       <p className="product-price">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}</p>
@@ -262,7 +296,7 @@ function HomePage() {
             {products.filter(product => product.category === 'hop-den').map((product) => (
               <div key={product.id} className="light-box-item">
                 <Link to={`/du-an/${product.id}`}>
-                  <img src={product.image} alt={product.title} />
+                  <img src={getFirstImage(product.image)} alt={product.title} />
                   <h3>{product.title}</h3>
                   {product.price && (
                     <p className="product-price">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}</p>
