@@ -19,12 +19,22 @@ function Header() {
         <div className="logo-container">
           <Link to="/">
             <img 
-              src="/images/logo-quang-cao-sai-gon-red-vuong-1.png" 
+              src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.15752-9/484183060_611216925276624_2363419216912594779_n.png?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_ohc=KGLmylPGo3sQ7kNvwGtLjpU&_nc_oc=Admd_34a3kiuFGdwIUjZAfgXNm95wrTIHrhZrp5afgAUBxEygsZP6IbjEB8h5O-71uZln0KhHuGIvkZnFPaHBREi&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&oh=03_Q7cD2AEPcyCbtTvPuMq_9P897Q0LHtvpT2nFq1EH8G0tA-PseA&oe=682DC401" 
               alt="HoaKhanh Advertising Logo" 
               className="logo-image"
             />
           </Link>
         </div>
+        
+        <div className="header-mobile-controls">
+          <button className="search-toggle" onClick={toggleSearch}>
+            <Search size={20} />
+          </button>
+          <button className="mobile-menu-btn" onClick={()=>setMobileMenuOpen(!mobileMenuOpen)}>
+            <Menu size={24} />
+          </button>
+        </div>
+
         <div className={`search-container ${searchVisible ? 'mobile-visible' : ''}`}>
           <div className="search-input">
             <input type="text" placeholder="Nhập từ khóa để tìm kiếm..." />
@@ -33,6 +43,7 @@ function Header() {
             </button>
           </div>
         </div>
+        
         <div className="contact-info">
           <div className="contact-item">
             <Mail className="contact-icon" />
@@ -43,24 +54,23 @@ function Header() {
             <span>0787 545 842</span>
           </div>
         </div>
-        <div className="header-mobile-controls">
-          <button className="search-toggle" onClick={toggleSearch}>
-            <Search />
-          </button>
-          <button className="mobile-menu-btn" onClick={()=>setMobileMenuOpen(!mobileMenuOpen)}>
-            <Menu />
-          </button>
-        </div>
       </div>
+      
+      <div className={`mobile-nav-overlay ${mobileMenuOpen ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}></div>
+      
       <nav className={`navigation${mobileMenuOpen ? ' open' : ''}`}>
+        <div className="nav-header">
+          <span>Menu</span>
+          <button className="close-menu" onClick={() => setMobileMenuOpen(false)}>✕</button>
+        </div>
         <div className="nav-container">
           <ul className="nav-list">
-            <li className="nav-item"><Link to="/">Trang chủ</Link></li>
-            <li className="nav-item"><Link to="/gioi-thieu">Giới thiệu</Link></li>
-            <li className="nav-item"><Link to="/dich-vu">Dịch vụ</Link></li>
-            <li className="nav-item"><Link to="/du-an">Dự án</Link></li>
-            <li className="nav-item"><Link to="/bang-gia">Bảng giá</Link></li>
-            <li className="nav-item"><Link to="/lien-he">Liên hệ</Link></li>
+            <li className="nav-item"><Link to="/" onClick={() => setMobileMenuOpen(false)}>Trang chủ</Link></li>
+            <li className="nav-item"><Link to="/gioi-thieu" onClick={() => setMobileMenuOpen(false)}>Giới thiệu</Link></li>
+            <li className="nav-item"><Link to="/dich-vu" onClick={() => setMobileMenuOpen(false)}>Dịch vụ</Link></li>
+            <li className="nav-item"><Link to="/du-an" onClick={() => setMobileMenuOpen(false)}>Dự án</Link></li>
+            <li className="nav-item"><Link to="/bang-gia" onClick={() => setMobileMenuOpen(false)}>Bảng giá</Link></li>
+            <li className="nav-item"><Link to="/lien-he" onClick={() => setMobileMenuOpen(false)}>Liên hệ</Link></li>
           </ul>
         </div>
       </nav>
@@ -96,8 +106,12 @@ function Footer() {
             </div>
             <div className="footer-column">
               <h3>XƯỞNG SẢN XUẤT</h3>
-              <div className="factory-image">
-                <img src="/placeholder.svg" alt="Factory" />
+              <div className="factory-image-wrapper">
+                <img 
+                  src="https://i.ytimg.com/vi/eqobrrcBTlE/mqdefault.jpg" 
+                  alt="Factory" 
+                  className="factory-image" 
+                />
               </div>
             </div>
             <div className="footer-column">
@@ -163,13 +177,7 @@ function HomePage() {
       <section className="hero-banner">
         <div className="banner-content">
           <div className="banner-text">
-            <div className="logo-wrapper">
-              <img
-                src="/images/logo-quang-cao-sai-gon-red-vuong-1.png"
-                alt="HoaKhanh Advertising Logo White"
-                className="banner-logo"
-              />
-            </div>
+            {/* Remove this logo-wrapper div */}
             <h1>CÔNG TY TNHH PHÁT TRIỂN</h1>
             <h2>QUẢNG CÁO HOÀ KHÁNH</h2>
             <ul className="service-list">
@@ -315,7 +323,7 @@ function HomePage() {
               <h2>KHÁC BIỆT</h2>
               <ul className="special-list">
                 <li>Có nhà xưởng trực tiếp sản xuất giá tốt giảm tới 30% chi phí.</li>
-                <li>Thiết kế miễn phí cho khách thi công.</li>
+                <li>Thiết kếm miễn phí cho khách thi công.</li>
                 <li>Cam kết thực hiện Đúng theo 100% hợp đồng.</li>
                 <li>Hoàn tiền thiệt kế không cần lý do.</li>
                 <li>Giám Đốc đi lên từ thợ chính.</li>
