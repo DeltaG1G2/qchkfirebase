@@ -55,9 +55,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute; /* Add this */
-  bottom: 1rem; /* Add this */
-  right: 1rem; /* Add this */
+  position: absolute; 
+  bottom: 1rem; 
+  right: 1rem;
 }
 
 .delete-button:hover {
