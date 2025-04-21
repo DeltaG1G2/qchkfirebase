@@ -1,88 +1,16 @@
-import React, { useState } from 'react';
-import './Dichvu.css';
-import { ArrowRight, Menu, Search, Phone, Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React from 'react';
+import Header from '../components/Header'; // Import Header
+import Footer from '../components/Footer'; // Import Footer
 
-function Dichvu() {
-  const services = [
-    {
-      id: 1,
-      title: 'Bảng Hiệu Aluminium',
-      image: '/images/bang-hieu-alu.jpg',
-      description: 'Thi công bảng hiệu Aluminium chuyên nghiệp, độ bền cao',
-      details: [
-        { label: 'Thời gian thi công', value: '3-5 ngày' },
-        { label: 'Bảo hành', value: '2 năm' },
-        { label: 'Chi phí', value: 'Liên hệ' }
-      ]
-    },
-    {
-      id: 2,
-      title: 'Hộp Đèn Mica',
-      image: '/images/bang-hieu-quang-cao-dep-trung-tam-anh-ngu.jpg',
-      description: 'Hộp đèn quảng cáo sử dụng vật liệu Mica cao cấp',
-      details: [
-        { label: 'Thời gian thi công', value: '2-4 ngày' },
-        { label: 'Bảo hành', value: '18 tháng' },
-        { label: 'Chi phí', value: 'Liên hệ' }
-      ]
-    },
-    {
-      id: 3,
-      title: 'Chữ Nổi Inox',
-      image: '/images/bang-hieu-spa-dianva.jpg',
-      description: 'Chữ nổi inox sang trọng, phù hợp cho biển hiệu công ty',
-      details: [
-        { label: 'Thời gian thi công', value: '5-7 ngày' },
-        { label: 'Bảo hành', value: '3 năm' },
-        { label: 'Chi phí', value: 'Liên hệ' }
-      ]
-    }
-  ];
-
-  return (
-    <div className="service-page">
-      <Header />
-      <div className="section-container">
-        <h2 className="section-title">DỊCH VỤ CỦA CHÚNG TÔI</h2>
-        <div className="service-grid">
-          {services.map((service) => (
-            <div key={service.id} className="service-item">
-              <img 
-                src={service.image} 
-                alt={service.title} 
-                className="service-image"
-              />
-              <div className="service-content">
-                <h3 className="service-title">{service.title}</h3>
-                <p className="service-description">{service.description}</p>
-                <div className="service-details">
-                  {service.details.map((detail, index) => (
-                    <div key={index} className="detail-item">
-                      <span className="detail-label">{detail.label}:</span>
-                      <span className="detail-value">{detail.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="price-actions">
-          <Link to="/bang-gia" className="view-price">
-            XEM BẢNG GIÁ CHI TIẾT
-            <ArrowRight className="arrow-icon" />
-          </Link>
-          <Link to="/lien-he" className="register-button">
-            Đăng ký tư vấn dịch vụ
-          </Link>
-        </div>
-      </div>
-      <Footer />
+const Dichvu = () => (
+  <>
+    <Header /> {/* Include Header */}
+    <div className="page-container">
+      <h2>Dịch vụ</h2>
+      <p>Đây là trang dịch vụ của Quảng Cáo Hoà Khánh.</p>
     </div>
-  );
-}
+    <Footer /> {/* Include Footer */}
+  </>
+);
 
 export default Dichvu;

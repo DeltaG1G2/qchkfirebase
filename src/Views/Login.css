@@ -32,19 +32,22 @@
 .input-group {
   position: relative;
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center; /* Align items vertically */
 }
 
 .input-icon {
   position: absolute;
-  left: 15px;
+  left: 10px; /* Adjusted for better alignment */
   top: 50%;
   transform: translateY(-50%);
   color: #7f8c8d;
+  pointer-events: none; /* Ensure icon does not interfere with input */
 }
 
 input {
   width: 100%;
-  padding: 12px 12px 12px 40px;
+  padding: 12px 12px 12px 40px; /* Ensure padding accounts for icon */
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 16px;
