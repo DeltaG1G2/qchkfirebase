@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, limit, getDocs } from 'firebase/firestore';
 import { db } from '../firebase.js';
 import './ProductDetail.css';
 import { Search, Phone, Mail, ArrowRight, Menu, ChevronRight, Star, Heart, Share2, Clock, Shield } from 'lucide-react';
@@ -14,6 +14,7 @@ function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -22,10 +23,14 @@ function ProductDetail() {
         const docSnap = await getDoc(docRef);
         
         if (docSnap.exists()) {
-          setProduct({
+          const productData = {
             id: docSnap.id,
             ...docSnap.data()
-          });
+          };
+          
+          setProduct(productData);
+          
+          fetchRelatedProducts(productData.category, docSnap.id);
         } else {
           console.log('Không tìm thấy sản phẩm!');
         }
@@ -38,6 +43,29 @@ function ProductDetail() {
 
     fetchProduct();
   }, [productId]);
+
+  const fetchRelatedProducts = async (category, currentProductId) => {
+    try {
+      const productsRef = collection(db, 'products');
+      const q = query(
+        productsRef,
+        where('category', '==', category),
+        limit(4)
+      );
+      
+      const querySnapshot = await getDocs(q);
+      const relatedProductsData = querySnapshot.docs
+        .map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        .filter(prod => prod.id !== currentProductId);
+      
+      setRelatedProducts(relatedProductsData);
+    } catch (error) {
+      console.error('Lỗi khi lấy sản phẩm liên quan:', error);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +81,12 @@ function ProductDetail() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const getFirstImage = (imageString) => {
+    if (!imageString) return '';
+    const images = imageString.split(',');
+    return images[0].trim();
+  };
 
   if (loading) {
     return (
@@ -76,7 +110,7 @@ function ProductDetail() {
 
   const galleryImages = product.image 
     ? product.image.split(',').map(url => url.trim())
-    : []; // Handle case when no images exist
+    : [];
 
   return (
     <div className="product-detail-container">
@@ -227,9 +261,7 @@ function ProductDetail() {
         
         <div className="product-tabs">
           <div className="tabs-header">
-            <button className="tab-button active">Thông số kỹ thuật</button>
             <button className="tab-button">Đặc điểm sản phẩm</button>
-            <button className="tab-button">Đánh giá (12)</button>
           </div>
           
           <div className="tab-content">
@@ -290,21 +322,39 @@ function ProductDetail() {
         
         <div className="related-products">
           <h2 className="section-title">Sản phẩm liên quan</h2>
-          <div className="related-products-grid">
-            <div className="product-card">
-              <div className="product-card-image">
-                <img src="/images/placeholder.jpg" alt="Sản phẩm liên quan" />
-              </div>
-              <div className="product-card-content">
-                <h3>Biển hiệu quảng cáo LED</h3>
-                <div className="product-card-price">5.500.000 ₫</div>
-                <Link to="/san-pham/1" className="view-product-button">
-                  Xem chi tiết
-                  <ArrowRight className="button-icon" />
-                </Link>
-              </div>
+          
+          {relatedProducts.length > 0 ? (
+            <div className="related-products-grid">
+              {relatedProducts.map(relatedProduct => (
+                <div className="product-card" key={relatedProduct.id}>
+                  <div className="product-card-image">
+                    <img 
+                      src={getFirstImage(relatedProduct.image)} 
+                      alt={relatedProduct.title} 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/images/placeholder.jpg';
+                      }}
+                    />
+                  </div>
+                  <div className="product-card-content">
+                    <h3>{relatedProduct.title}</h3>
+                    {relatedProduct.price && (
+                      <div className="product-card-price">
+                        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(relatedProduct.price)}
+                      </div>
+                    )}
+                    <Link to={`/du-an/${relatedProduct.id}`} className="view-product-button">
+                      Xem chi tiết
+                      <ArrowRight className="button-icon" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+          ) : (
+            <p className="no-related-products">Không có sản phẩm liên quan</p>
+          )}
         </div>
       </div>
       
