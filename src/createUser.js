@@ -27,14 +27,11 @@ createUser('exampleUser', 'examplePassword');
 
 const createAdminUser = async () => {
   try {
-    // Mã hóa mật khẩu với salt rounds = 10
     const hashedPassword = await bcrypt.hash('mahoa', 10);
     
     await addDoc(collection(db, 'user'), {
       username: 'mahoa',
-      password: hashedPassword,
-      role: 'admin',
-      createdAt: new Date()
+      password: hashedPassword
     });
     
     console.log('Admin user created successfully!');

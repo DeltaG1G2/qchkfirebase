@@ -28,18 +28,18 @@ const Login = () => {
         const isMatch = await bcrypt.compare(password, userDoc.data().password);
         
         if (isMatch) {
-          alert('Login successful!');
+          alert('Đăng nhập thành công!');
           login();
           navigate('/quan-ly');
         } else {
-          alert('Invalid credentials');
+          alert('Tên đăng nhập không tồn tại');
         }
       } else {
-        alert('Invalid credentials');
+        alert('Mật khẩu không đúng');
       }
     } catch (error) {
-      console.error('Login error:', error);
-      alert('Login failed');
+      console.error('Lỗi đăng nhập:', error);
+      alert('Đã xảy ra lỗi khi đăng nhập');
     } finally {
       setLoading(false);
     }
