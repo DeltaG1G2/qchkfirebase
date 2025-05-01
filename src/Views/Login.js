@@ -32,10 +32,10 @@ const Login = () => {
           login();
           navigate('/quan-ly');
         } else {
-          alert('Tên đăng nhập không tồn tại');
+          alert('Mật khẩu không đúng');
         }
       } else {
-        alert('Mật khẩu không đúng');
+        alert('Tên đăng nhập không tồn tại');
       }
     } catch (error) {
       console.error('Lỗi đăng nhập:', error);
