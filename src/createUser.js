@@ -1,6 +1,7 @@
 import { db } from './firebase.js'; // Import Firestore instance
 import { collection, addDoc } from 'firebase/firestore';
 import fs from 'fs';
+import bcrypt from 'bcryptjs';
 
 // Function to create a new user in Firestore and save credentials locally
 const createUser = async (username, password) => {
@@ -23,3 +24,23 @@ const createUser = async (username, password) => {
 
 // Example usage
 createUser('exampleUser', 'examplePassword');
+
+const createAdminUser = async () => {
+  try {
+    // Mã hóa mật khẩu với salt rounds = 10
+    const hashedPassword = await bcrypt.hash('mahoa', 10);
+    
+    await addDoc(collection(db, 'user'), {
+      username: 'mahoa',
+      password: hashedPassword,
+      role: 'admin',
+      createdAt: new Date()
+    });
+    
+    console.log('Admin user created successfully!');
+  } catch (error) {
+    console.error('Error creating admin user:', error);
+  }
+};
+
+createAdminUser();

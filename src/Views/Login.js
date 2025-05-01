@@ -5,6 +5,7 @@ import './Login.css';
 import { Lock, User } from 'lucide-react';
 import { useAuth } from '../AuthContext'; // Import useAuth
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import bcrypt from 'bcryptjs';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -19,16 +20,20 @@ const Login = () => {
 
     try {
       const usersRef = collection(db, 'user');
-      const q = query(usersRef, 
-        where('username', '==', username),
-        where('password', '==', password)
-      );
-
+      const q = query(usersRef, where('username', '==', username));
       const querySnapshot = await getDocs(q);
+      
       if (!querySnapshot.empty) {
-        alert('Login successful!');
-        login(); // Set authentication state to true
-        navigate('/quan-ly'); // Use navigate to redirect
+        const userDoc = querySnapshot.docs[0];
+        const isMatch = await bcrypt.compare(password, userDoc.data().password);
+        
+        if (isMatch) {
+          alert('Login successful!');
+          login();
+          navigate('/quan-ly');
+        } else {
+          alert('Invalid credentials');
+        }
       } else {
         alert('Invalid credentials');
       }
