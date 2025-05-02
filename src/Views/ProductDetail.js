@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc, collection, query, where, limit, getDocs } from 'firebase/firestore';
 import { db } from '../firebase.js';
 import './ProductDetail.css';
-import { Search, Phone, Mail, ArrowRight, Menu, ChevronRight, Star, Heart, Share2, Clock, Shield } from 'lucide-react';
+import { Phone, ArrowRight, Star, Heart, Share2, Clock, Shield, ChevronRight} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

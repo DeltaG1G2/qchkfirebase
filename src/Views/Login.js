@@ -3,16 +3,16 @@ import { getDocs, query, collection, where } from 'firebase/firestore';
 import { db } from '../firebase.js';
 import './Login.css';
 import { Lock, User } from 'lucide-react';
-import { useAuth } from '../AuthContext'; // Import useAuth
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 import bcrypt from 'bcryptjs';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth(); // Destructure login from useAuth
-  const navigate = useNavigate(); // Initialize useNavigate
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
