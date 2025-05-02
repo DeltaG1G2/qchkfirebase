@@ -13,7 +13,6 @@ function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isSticky, setIsSticky] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
@@ -67,20 +66,6 @@ function ProductDetail() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   const getFirstImage = (imageString) => {
     if (!imageString) return '';
@@ -178,7 +163,7 @@ function ProductDetail() {
             )}
           </div>
           
-          <div className={`product-info ${isSticky ? 'sticky' : ''}`}>
+          <div className="product-info">
             <h1 className="product-title">{product.title}</h1>
             
             <div className="product-meta">

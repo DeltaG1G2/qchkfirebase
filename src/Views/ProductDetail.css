@@ -460,4 +460,38 @@
   }
 }
 
+/* Icon alignment fixes */
+.highlight-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  color: #1e40af;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.highlight-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  color: #1e40af;
+}
+
 
