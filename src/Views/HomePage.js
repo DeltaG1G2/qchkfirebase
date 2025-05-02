@@ -12,7 +12,6 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('all');
 
-  // Fetch products from Firestore
   const fetchProducts = async () => {
     const querySnapshot = await getDocs(collection(db, 'products'));
     const productsData = querySnapshot.docs.map(doc => ({
@@ -29,27 +28,23 @@ function HomePage() {
 
   if (loading) return <div className="loading">Đang tải...</div>;
 
-  // Add this new function to get the first image from multiple URLs
   const getFirstImage = (imageUrls) => {
     if (!imageUrls) return '';
     return imageUrls.split(',')[0].trim();
   };
 
-  // Add this new function to filter products by category
   const filteredProducts = () => {
     if (activeTab === 'all') return products.slice(0, 6);
     return products.filter(product => product.category === activeTab).slice(0, 6);
   };
 
-  // Update the Featured Projects section
   return (
     <div className="home-container">
       <Header />
-      {/* Hero Banner */}
+      {/* Banner chính */}
       <section className="hero-banner">
         <div className="banner-content">
           <div className="banner-text">
-            {/* Remove this logo-wrapper div */}
             <h1>CÔNG TY TNHH PHÁT TRIỂN</h1>
             <h2>QUẢNG CÁO HOÀ KHÁNH</h2>
             <ul className="service-list">
@@ -68,7 +63,7 @@ function HomePage() {
           <div className="banner-image-container">
             <img
               src="https://phucloiviet.vn/wp-content/uploads/2021/04/duc-lai-1-1024x767.jpg"
-              alt="Advertising Examples"
+              alt="Banner Image"
               className="main-banner-image"
             />
             <div className="diamond-badge">
@@ -81,7 +76,7 @@ function HomePage() {
           </div>
         </div>
       </section>
-      {/* Featured Projects */}
+      {/* Cụm 1 tab chuyển */}
       <section className="featured-projects">
         <div className="section-container">
           <h2 className="section-title">DỰ ÁN BẢNG HIỆU TIÊU BIỂU</h2>
@@ -130,7 +125,7 @@ function HomePage() {
           </div>
         </div>
       </section>
-      {/* Price List Section */}
+      {/* XEM BẢNG GIÁ */}
       <section className="price-list">
         <div className="section-container">
           <div className="price-actions">
@@ -144,7 +139,7 @@ function HomePage() {
           </div>
         </div>
       </section>
-      {/* Advertising Signs Section */}
+      {/* CỤM 2 */}
       <section className="product-section">
         <div className="section-container">
           <h2 className="section-title">LÀM BẢNG HIỆU QUẢNG CÁO</h2>
@@ -168,7 +163,7 @@ function HomePage() {
           </div>
         </div>
       </section>
-      {/* Light Box Section */}
+      {/* CỤM 3 */}
       <section className="light-box-section">
         <div className="section-container">
           <h2 className="section-title">HỘP ĐÈN QUẢNG CÁO</h2>
@@ -187,7 +182,7 @@ function HomePage() {
           </div>
         </div>
       </section>
-      {/* Special Section */}
+      {/* Khác biệt */}
       <section className="special-section">
         <div className="section-container">
           <div className="special-grid">
@@ -211,7 +206,7 @@ function HomePage() {
         </div>
       </section>
       <Footer />
-      {/* Social Media Sidebar */}
+      {/* Zalo thả nổi */}
       <div className="social-sidebar">
         <div className="social-buttons">
           <a href="https://zalo.me/0787656584" className="social-button zalo" target="_blank" rel="noopener noreferrer">

@@ -26,9 +26,7 @@ function ProductDetail() {
             id: docSnap.id,
             ...docSnap.data()
           };
-          
           setProduct(productData);
-          
           fetchRelatedProducts(productData.category, docSnap.id);
         } else {
           console.log('Không tìm thấy sản phẩm!');
@@ -51,7 +49,7 @@ function ProductDetail() {
         where('category', '==', category),
         limit(4)
       );
-      
+
       const querySnapshot = await getDocs(q);
       const relatedProductsData = querySnapshot.docs
         .map(doc => ({
@@ -185,11 +183,6 @@ function ProductDetail() {
                 <span className="current-price">
                   {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}
                 </span>
-                {product.oldPrice && (
-                  <span className="old-price">
-                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.oldPrice)}
-                  </span>
-                )}
               </div>
             )}
             
@@ -255,19 +248,19 @@ function ProductDetail() {
                 <tbody>
                   <tr>
                     <td>Kích thước</td>
-                    <td>{product.dimensions || 'Tùy chỉnh theo yêu cầu'}</td>
+                    <td>Tùy chỉnh theo yêu cầu</td>
                   </tr>
                   <tr>
                     <td>Chất liệu</td>
-                    <td>{product.material || 'Đa dạng tùy chọn'}</td>
+                    <td>Đa dạng tùy chọn</td>
                   </tr>
                   <tr>
                     <td>Thời gian thi công</td>
-                    <td>{product.constructionTime || '3-5 ngày làm việc'}</td>
+                    <td>3-5 ngày làm việc</td>
                   </tr>
                   <tr>
                     <td>Bảo hành</td>
-                    <td>{product.warranty || '12 tháng'}</td>
+                    <td>12 tháng</td>
                   </tr>
                   <tr>
                     <td>Đơn vị thi công</td>
@@ -316,10 +309,6 @@ function ProductDetail() {
                     <img 
                       src={getFirstImage(relatedProduct.image)} 
                       alt={relatedProduct.title} 
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = '/images/placeholder.jpg';
-                      }}
                     />
                   </div>
                   <div className="product-card-content">
