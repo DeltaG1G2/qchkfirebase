@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Phone, Mail, Menu } from 'lucide-react';
+import './Header.css';
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

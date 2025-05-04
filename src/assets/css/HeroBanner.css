@@ -1,0 +1,150 @@
+/* Hero Banner Styles */
+.hero-banner {
+  background: #1e3a8a;
+  color: white;
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.banner-text {
+  z-index: 10;
+}
+
+.banner-text h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.banner-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fcd34d;
+  margin-bottom: 2rem;
+}
+
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  font-size: 1.125rem;
+}
+
+.service-list li {
+  margin-bottom: 0.5rem;
+}
+
+.hotline-badge {
+  background: white;
+  color: #dc2626;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  margin: 1.5rem 0;
+}
+
+.address-section {
+  margin-top: 1rem;
+}
+
+.address-section p {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+/* Banner Image */
+.banner-image-container {
+  position: relative;
+  z-index: 10;
+}
+
+.main-banner-image {
+  width: 100%;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.diamond-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #dc2626;
+  padding: 1.5rem;
+  z-index: 20;
+  border-radius: 8px;
+}
+
+.diamond-content {
+  transform: rotate(-45deg);
+  text-align: center;
+  font-weight: 700;
+}
+
+.diamond-content p {
+  margin: 0.25rem 0;
+}
+
+/* Media Queries for Hero Banner */
+@media (max-width: 1024px) {
+  .banner-text h1 {
+    font-size: 1.25rem;
+  }
+  
+  .banner-text h2 {
+    font-size: 2rem;
+  }
+  
+  .service-list {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .banner-image-container {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-text h1 {
+    font-size: 1.125rem;
+  }
+  
+  .banner-text h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Fix for Safari */
+@supports (-webkit-touch-callout: none) {
+  .banner-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  
+  .banner-text, .banner-image-container {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 300px;
+    flex: 1 1 300px;
+  }
+}

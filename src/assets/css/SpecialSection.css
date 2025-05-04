@@ -1,0 +1,89 @@
+/* Special Section */
+.special-section {
+  padding: 2.5rem 0;
+  background-color: #f3f4f6;
+}
+
+.special-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.special-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
+}
+
+.special-list {
+  list-style: none;
+  padding: 0;
+}
+
+.special-list li {
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.special-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #0d9488;
+  font-weight: bold;
+}
+
+.special-highlight {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.special-highlight h3 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.special-highlight h4 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #fcd34d;
+  margin-bottom: 1rem;
+}
+
+.special-highlight strong {
+  color: #fcd34d;
+}
+
+/* Media Queries for Special Section */
+@media (max-width: 768px) {
+  .special-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Fix for Safari */
+@supports (-webkit-touch-callout: none) {
+  .special-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  
+  .special-content, .special-highlight {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 300px;
+    flex: 1 1 300px;
+  }
+}

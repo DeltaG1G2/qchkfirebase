@@ -1,0 +1,144 @@
+/* Footer */
+.footer {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 2.5rem 0;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .footer-column h3 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    position: relative;
+    padding-left: 0.5rem;
+  }
+  
+  .footer-column ul li::before {
+    content: '•';
+    position: absolute;
+    left: -0.5rem;
+    color: #fcd34d;
+  }
+  
+  .factory-image {
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .factory-image img {
+    width: 100%;
+    height: 8rem;
+    object-fit: cover;
+  }
+  
+  /* Copyright */
+  .copyright {
+    background-color: #172554;
+    color: white;
+    padding: 0.5rem 0;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+  
+  .copyright-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Social Media Sidebar */
+  .social-sidebar {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+  }
+  
+  .social-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .social-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.75rem;
+  }
+  
+  .social-button.zalo {
+    background-color: #2196f3;
+  }
+  
+  .social-button.facebook {
+    background-color: #3b5998;
+  }
+  
+  .social-button.call {
+    background-color: #4caf50;
+  }
+  
+  .social-button.top {
+    background-color: #616161;
+  }
+  
+  .social-icon {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  
+  /* Media Queries for Footer */
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Fix for Safari */
+  @supports (-webkit-touch-callout: none) {
+    .footer-grid {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    
+    .footer-column {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 250px;
+      flex: 1 1 250px;
+    }
+  }
