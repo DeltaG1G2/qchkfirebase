@@ -68,51 +68,6 @@
     padding: 0 1rem;
   }
   
-  /* Social Media Sidebar */
-  .social-sidebar {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 50;
-  }
-  
-  .social-buttons {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .social-button {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 0.75rem;
-  }
-  
-  .social-button.zalo {
-    background-color: #2196f3;
-  }
-  
-  .social-button.facebook {
-    background-color: #3b5998;
-  }
-  
-  .social-button.call {
-    background-color: #4caf50;
-  }
-  
-  .social-button.top {
-    background-color: #616161;
-  }
-  
-  .social-icon {
-    font-size: 0.75rem;
-    text-align: center;
-  }
-  
   /* Media Queries for Footer */
   @media (max-width: 768px) {
     .footer-grid {

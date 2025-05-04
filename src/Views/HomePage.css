@@ -1,3 +1,11 @@
+@import '../assets/css/Base.css';
+@import '../assets/css/HeroBanner.css';
+@import '../assets/css/Projects.css';
+@import '../assets/css/Products.css';
+@import '../assets/css/PriceList.css';
+@import '../assets/css/LightBox.css';
+@import '../assets/css/SpecialSection.css';
+
 /* Loading state */
 .loading {
   display: flex;
@@ -8,7 +16,7 @@
   color: #1e3a8a;
 }
 
-/* Social Media Sidebar - Moved from Footer.css to HomePage.css since it's specific to HomePage */
+/* Social Media Sidebar */
 .social-sidebar {
   position: fixed;
   left: 0;
