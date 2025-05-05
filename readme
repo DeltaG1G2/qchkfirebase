@@ -1,0 +1,83 @@
+# Hướng dẫn dự án: [Tên Dự Án Của Bạn]
+
+## Giới thiệu
+
+Dự án này là một ứng dụng web được xây dựng bằng React và Firebase. Nó được thiết kế để [Mô tả ngắn gọn mục đích của dự án, ví dụ: quản lý sản phẩm quảng cáo, hiển thị thông tin dịch vụ,...].
+
+## Công nghệ sử dụng
+
+*   **React:** Thư viện JavaScript để xây dựng giao diện người dùng.
+*   **Firebase:** Nền tảng phát triển ứng dụng của Google, cung cấp cơ sở dữ liệu (Firestore), xác thực người dùng, và nhiều hơn nữa.
+*   **React Router:** Quản lý điều hướng giữa các trang.
+*   **bcryptjs:** Mã hóa mật khẩu.
+*   **lucide-react:** Sử dụng các icon.
+
+## Cài đặt
+
+1.  **Cài đặt Node.js và npm:** Đảm bảo bạn đã cài đặt Node.js và npm (Node Package Manager) trên máy tính của bạn. Bạn có thể tải xuống từ trang chủ của Node.js: [https://nodejs.org/](https://nodejs.org/)
+
+2.  **Clone dự án:**
+
+    ```bash
+    git clone [Địa chỉ repository của bạn]
+    cd [Tên thư mục dự án]
+    ```
+
+3.  **Cài đặt các gói phụ thuộc:**
+
+    ```bash
+    npm install
+    ```
+
+## Cấu hình Firebase
+
+1.  **Tạo một dự án Firebase:** Truy cập [https://console.firebase.google.com/](https://console.firebase.google.com/) và tạo một dự án mới.
+
+2.  **Cấu hình Firestore:**
+    *   Trong Firebase console, chọn "Firestore Database".
+    *   Tạo một cơ sở dữ liệu mới. Bạn có thể bắt đầu ở chế độ "test mode" để dễ dàng phát triển.
+
+3.  **Lấy thông tin cấu hình Firebase:**
+    *   Trong Firebase console, vào "Project settings" (biểu tượng bánh răng).
+    *   Cuộn xuống phần "Your apps" và chọn biểu tượng "</>" (Web).
+    *   Sao chép đoạn mã cấu hình Firebase (firebaseConfig) và dán vào file `qchkfirebase/src/firebase.js` của bạn.
+
+4.  **Bật xác thực người dùng (Authentication):**
+    *   Trong Firebase console, chọn "Authentication".
+    *   Chọn phương thức đăng nhập (ví dụ: Email/Password) và bật nó lên.
+
+## Chạy dự án
+
+```bash
+npm start
+
+Ứng dụng sẽ chạy tại địa chỉ `http://localhost:3000`.
+
+qchkfirebase/
+├── src/                # Mã nguồn của ứng dụng
+│   ├── components/     # Các components tái sử dụng
+│   ├── Views/          # Các trang (views) của ứng dụng
+│   ├── App.js          # Component chính của ứng dụng
+│   ├── AuthContext.js  # Quản lý xác thực người dùng
+│   ├── firebase.js     # Cấu hình Firebase
+│   ├── index.js        # Điểm khởi đầu của ứng dụng
+│   └── ...
+├── public/             # Các file tĩnh (ví dụ: images)
+├── package.json        # Thông tin dự án và các dependencies
+├── README.md           # File hướng dẫn này
+└── ...
+
+
+Hướng dẫn sử dụng
+
+*   **Trang chủ:** Hiển thị [Mô tả trang chủ].
+*   **Giới thiệu:** Thông tin về [Mô tả trang giới thiệu].
+*   **Dịch vụ:** Danh sách các [Mô tả trang dịch vụ].
+*   **Dự án:** Các dự án đã thực hiện.
+*   **Bảng giá:** Thông tin về giá cả.
+*   **Liên hệ:** Thông tin liên hệ.
+*   **Đăng nhập:** Trang đăng nhập cho quản trị viên.
+*   **Quản lý:** Trang quản lý sản phẩm (yêu cầu đăng nhập).
+
+## Lưu ý
+*   Đây là một dự án đang phát triển, có thể có một số lỗi hoặc thiếu sót.

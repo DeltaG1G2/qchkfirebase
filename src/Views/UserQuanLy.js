@@ -10,7 +10,7 @@ const UserQuanLy = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Add this new function to create a new product
+  // Tạo sản phẩm rồi cập nhật lại
   const handleCreate = async () => {
     try {
       const newProduct = {
@@ -31,7 +31,7 @@ const UserQuanLy = () => {
     }
   };
 
-  // Fetch products from Firestore
+  // Lấy data
   const fetchProducts = async () => {
     const querySnapshot = await getDocs(collection(db, 'products'));
     const productsData = querySnapshot.docs.map(doc => ({
@@ -46,7 +46,7 @@ const UserQuanLy = () => {
     fetchProducts();
   }, []);
 
-  // Handle product updates
+  // Chức năng cập nhật sản phẩm
   const handleUpdate = async (productId) => {
     try {
       const productToUpdate = products.find(p => p.id === productId);
@@ -67,7 +67,7 @@ const UserQuanLy = () => {
     ));
   };
 
-  // Add this new function to split and display multiple images
+  // Nhiều ảnh cách nhau dấu phẩy
   const renderImagePreviews = (imageUrls) => {
     if (!imageUrls) return null;
     const urls = imageUrls.split(',').map(url => url.trim());
@@ -85,7 +85,7 @@ const UserQuanLy = () => {
     );
   };
 
-  // Add this new delete function
+  // Xóa sản phẩm
   const handleDelete = async (productId) => {
     if (window.confirm('Bạn có chắc muốn xoá sản phẩm này?')) {
       try {

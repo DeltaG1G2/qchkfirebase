@@ -6,7 +6,7 @@
 @import '../assets/css/LightBox.css';
 @import '../assets/css/SpecialSection.css';
 
-/* Loading state */
+/* Loading */
 .loading {
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@
   color: #1e3a8a;
 }
 
-/* Social Media Sidebar */
+/* Social Sidebar nổi */
 .social-sidebar {
   position: fixed;
   left: 0;
